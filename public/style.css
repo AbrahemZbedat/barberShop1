@@ -1,0 +1,553 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+/***************************************************************/
+header {
+    background: #f4f4f4; /* Lighter background for better contrast */
+    padding: 20px 0;
+    border-bottom: 2px solid #e0e0e0; /* Subtle border at the bottom */
+}
+
+.caixa {
+    max-width: 940px; /* Ensures responsiveness */
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Aligns items on the sides */
+}
+
+h1 img {
+    max-height: 100px; /* Limits logo height for consistency */
+    max-width: 100px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav li {
+    margin: 0 15px;
+}
+
+nav a {
+    text-transform: uppercase;
+    color: #333333; /* Darker color for better readability */
+    font-weight: bold;
+    font-size: 20px; /* Slightly smaller for better balance */
+    text-decoration: none;
+    transition: color 0.3s, border-bottom 0.3s; /* Smooth transition */
+    padding: 10px 0; /* Adds padding for better click area */
+    border-bottom: 2px solid transparent; /* Border for hover effect */
+}
+
+nav a:hover {
+    color: #c78c19; /* Accent color for hover effect */
+    border-bottom: 2px solid #c78c19; /* Underline effect on hover */
+}
+
+
+/*************************************************************************************/
+.produtos {
+    width: 960px;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+
+.produtos li {
+    display: inline-block;
+    text-align: center;
+    width: 30%;
+    vertical-align: top;
+    margin: 0 1.5%;
+    padding: 30px 20px;
+    box-sizing: border-box;
+    border: 2px solid #000000;
+    border-radius: 20px;
+}
+
+.produtos li:hover {
+    border-color: #c78c19;
+}
+
+.produtos li:active {
+    border-color: #088c19;
+}
+
+.produtos li:hover h2 {
+    font-size: 40px;
+}
+
+.produtos h2 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.produto-descricao {
+    font-size: 20px;
+}
+
+.produto-preco {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+footer {
+    text-align: center;
+    background: url("bg.jpg");
+    padding: 40px 0;
+}
+
+.copyrigth {
+    color: #ffffff;
+    font-size: 18px;
+    margin: 29px 0 0;
+}
+
+main {}
+
+form {
+    margin: 40px 0;
+}
+
+form label, form legend {
+    display: block;
+    font-size: 20px;
+    margin: 0 0 10px;
+}
+
+.input-padrao {
+    display: block;
+    margin: 0 0 20px;
+    padding: 10px 25px;
+    width: 50%;
+}
+
+.checkbox {
+    margin: 20px 0;
+}
+
+.enviar {
+    width: 40%;
+    padding: 15px 0;
+    background: #9635cc;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    transition: 1s all;
+    cursor: pointer;
+}
+
+.enviar:hover {
+    background: #706575;
+    transform: scale(1.2);
+}
+
+table {
+    margin: 20px 0 40px;
+}
+
+thead {
+    background: #555555;
+    color: white;
+    font-weight: bold;
+}
+
+td, th {
+    border: 1px solid #000000;
+    padding: 8px 15px;
+}
+/****************************/
+.banner-container {
+    position: relative; /* Position context for absolute elements */
+    text-align: center; /* Center text inside the container */
+}
+
+.banner {
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    max-height: 400px; /* Limit the maximum height */
+    object-fit: cover; /* Crop the image to fit */
+    border-bottom: 4px solid #007bff; /* Stylish border */
+   ;
+}
+
+.button-container {
+    position: absolute; /* Position relative to the container */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Offset to perfect center */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 15px; /* Space between buttons */
+}
+
+.appointment-btn {
+    padding: 15px 30px; /* Button padding */
+    font-size: 18px; /* Font size */
+    color: white; /* Text color */
+    background-color: rgba(0, 123, 255, 0.8); /* Button color with transparency */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.appointment-btn:hover {
+    background-color: rgba(0, 86, 179, 0.8); /* Darker shade on hover */
+}
+
+/******************************/
+.principal {
+    padding: 3em 1.5em; /* Responsive padding */
+    background: #f9f9f9; /* Light background for contrast */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    max-width: 940px; /* Limit width for larger screens */
+    margin: 2em auto; /* Center and space the section */
+    text-align: center; /* Center text */
+}
+
+.titulo-principal {
+    font-size: 2.5em; /* Increased font size */
+    color: #007bff; /* Color for emphasis */
+    margin-bottom: 0.5em; /* Space below title */
+    text-align: center;
+}
+
+.titulo-principal:before {
+    content: "✓  "; /* Check mark before title */
+    color: #007bff; /* Match the title color */
+    font-size: 1.2em; /* Slightly smaller */
+}
+
+.utensilios {
+    width: 150px; /* Fixed width for image */
+    margin: 1.5em auto; /* Center and space the image */
+    border-radius: 10px; /* Rounded corners for image */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.principal p {
+    margin: 1.5em 0 0; /* Space above and below the paragraph */
+    font-size: 1.1em; /* Slightly larger font for readability */
+    line-height: 1.6; /* Increased line height for better readability */
+    color: #333; /* Dark gray text color */
+}
+
+.principal strong {
+    font-weight: bold; /* Bold text */
+}
+
+.principal em {
+    font-style: italic; /* Italic text */
+}
+
+/***************************************/
+.mapa-conteudo{
+    width: 1000px;
+    margin: auto;
+    padding-top: 50px;
+}
+.mapa {
+    padding: 3em 0;
+    background: linear-gradient(to left, #e8e8e8, #c9c9c9);
+    width: 100%;
+    margin: 0 auto;
+}
+
+.mapa p {
+    text-align: center;
+}
+
+.beneficios {
+    padding: 3em 0;
+    background: linear-gradient(to left, #cccccc, #afafaf);
+    width: 100%;
+    
+
+    margin-bottom: -10px;
+}
+
+.beneficios p {
+    text-align: center;
+}
+
+.lista-beneficios {
+    float: right;
+    width: 300px;
+    margin: 0 40px 0 0;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+
+}
+
+.itens::after{
+     content: "  ✓  "
+}
+
+.lista-beneficios .itens {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 50px;
+}
+
+.imagem-beneficios {
+    width: 400px;
+    border: 4px solid #ff0;
+}
+
+.conteudo-beneficios {
+    width: 940px;
+    margin: 100px auto;
+}
+
+.conteudo-beneficios:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.video {
+    width: 940px;
+    margin: 0 auto;
+    
+}
+
+.copyrigth{
+    text-align: center;
+ margin: auto;
+    
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+    text-align: right; /* Align content to the right */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+h2 {
+    font-family: Arial, sans-serif; /* Change the font */
+    color: #333; /* Header color */
+}
+
+label {
+    display: block; /* Stack labels and inputs */
+    margin: 10px 0 5px;
+    font-weight: bold; /* Bold labels */
+}
+
+input[type="date"],
+input[type="text"],
+input[type="tel"],
+select {
+    width: 95%; /* Full width for inputs */
+    padding: 10px; /* Padding for comfort */
+    margin-bottom: 15px; /* Space between inputs */
+    border: 1px solid #ccc; /* Input border */
+    border-radius: 5px; /* Rounded corners */
+}
+
+button {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    border: none; /* No border */
+    padding: 10px 15px; /* Button padding */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    font-size: 16px; /* Font size */
+}
+
+button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+footer  {
+    text-align: center;
+}
+footer img {
+
+    max-width: 600px;
+    max-height: 300px;
+}
+
+.appointment-btn{
+    width: 200px;
+}
+/*******************************************/
+/* Styles for screens smaller than 768px (tablets and mobile devices) */
+@media only screen and (max-width: 768px) {
+    .caixa {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .caixa img {
+        max-height: 80px; /* Adjust logo height */
+    }
+
+    nav ul {
+        flex-direction: row;
+        justify-content:space-around
+    }
+
+    nav li {
+        margin: 20px 15px; /* Add margin between nav items */
+        text-align: center;
+    }
+
+    .produtos li {
+        width: 90%; /* Make product items full width on mobile */
+        margin: 10px 0; /* Add vertical margin */
+    }
+
+    .produtos h2 {
+        font-size: 24px; /* Adjust font size for smaller screens */
+    }
+
+    .produto-descricao {
+        font-size: 18px; /* Adjust font size */
+    }
+
+    .produto-preco {
+        font-size: 20px; /* Adjust font size */
+    }
+
+    footer {
+        padding: 20px 0; /* Adjust padding */
+    }
+
+    .copyrigth {
+        font-size: 16px; /* Adjust font size */
+        margin: 15px 0 0; /* Adjust margin */
+    }
+    
+    .produtos {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .produtos li {
+        width: 96%;
+        margin-bottom: 20px;
+    }
+    .banner-container {
+        height: auto; /* Allow banner to scale */
+    }
+
+    .banner {
+        max-height: 250px; /* Adjust max-height for mobile */
+    }
+
+    .button-container {
+        top: 60%; /* Adjust vertical position */
+        left: 50%;
+        transform: translate(-50%, -60%); /* Center buttons */
+    }
+
+    .appointment-btn {
+        font-size: 16px; /* Adjust font size */
+        padding: 10px 20px; /* Adjust padding */
+    }
+
+    .principal {
+        padding: 2em 1em; /* Adjust padding */
+        max-width: 100%;
+    }
+
+    .titulo-principal {
+        font-size: 30px; /* Adjust font size */
+        text-align: center;
+        margin-right: 40px;
+        align-items: center;
+        max-width: 100%;
+    }
+
+    .utensilios {
+        width: 120px; /* Adjust image width */
+    }
+
+    .principal p {
+        font-size: 1em; /* Adjust font size */
+    }
+
+    .mapa-conteudo, .video {
+        width: 100%; /* Make full width on mobile */
+    }
+
+    .lista-beneficios {
+        float: none;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .imagem-beneficios {
+        width: 95%; /* Adjust image width */
+        width: 200px;
+    }
+
+    .conteudo-beneficios {
+        width: 100%; /* Make full width on mobile */
+        margin: 20px auto; /* Adjust margin */
+        text-align: center;
+       
+    }
+    .beneficios{
+        text-align: center;
+    }
+
+    .modal-content {
+        width: 90%; /* Adjust width for mobile */
+    }
+
+    label, input, select, button {
+        width: 100%; /* Full width for inputs and buttons */
+    }
+    .video {
+max-width: 255px;
+    }
+}

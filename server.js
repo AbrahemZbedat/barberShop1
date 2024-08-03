@@ -37,7 +37,7 @@ app.post('/api/book-appointment', (req, res) => {
     }
 
     // Read the appointments from appointments.json
-    fs.readFile('./PRIVATE/appointments.json', 'utf8', (err, data) => {
+    fs.readFile('./public/appointments.json', 'utf8', (err, data) => {
         if (err) {
             return res.status(500).send('Error reading appointments file');
         }
@@ -52,7 +52,7 @@ app.post('/api/book-appointment', (req, res) => {
 
         // Book the appointment
         appointments.push({ date, time, name, phone }); // Add the new appointment
-        fs.writeFile('./PRIVATE/appointments.json', JSON.stringify(appointments, null, 2), (err) => {
+        fs.writeFile('./public/appointments.json', JSON.stringify(appointments, null, 2), (err) => {
             if (err) {
                 return res.status(500).send('Error booking appointment');
             }
@@ -66,7 +66,7 @@ app.post('/api/book-appointment', (req, res) => {
 
 // Endpoint to get all appointments
 app.get('/api/appointments', (req, res) => {
-    fs.readFile('./PRIVATE/appointments.json', 'utf8', (err, data) => {
+    fs.readFile('./public/appointments.json', 'utf8', (err, data) => {
         if (err) {
             return res.status(500).send('Error retrieving appointments');
         }

@@ -15,7 +15,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Simulated available slots for the barber
 const availableSlots = {
-    '2024-08-01': ['10:00', '11:00', '12:00', '13:00'],
+    '2024-08-01': ['10:00', '11:00', '12:00', '13:00'],'2024-08-03': ['10:00', '11:00', '12:00', '13:00'],
     '2024-08-02': ['14:00', '15:00', '16:00'],
 };
 

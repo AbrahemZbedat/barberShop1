@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+   
 </head>
 <body>
     <header>
@@ -19,6 +20,10 @@
                 </ul>
             </nav>
         </div>
+        <div class="admin-btn-container">
+            <button onclick="openAdminModal()">כניסת מנהל</button>
+        </div>
+        
     </header>
 
     <div class="banner-container">
@@ -32,7 +37,7 @@
     
     <main>
         <section class="principal">
-            <h2 class="titulo-principal">Barber Shop Mohamed  </h2>
+            <h2 class="titulo-principal">Barber Shop Mohamed</h2>
             <img class="utensilios" src="utensilios.jpg" alt="Utensilios">
             <p>ממוקם בלב העיר סכנין מביא לשוק את הטוב ביותר עבור השיער והאביזרים. נוסדה בשנת 2019, המספריה כבר מוכרת בעיר ומושכת לקוחות חדשים מדי יום. המשימה שלנו היא: "מתן הערכה עצמית ואיכות חיים ללקוחות". אנו מציעים אביזרים שונים המתאימים לשינויים בעולם האופנה. לשירות סטנדרט של מצוינות וזריזות המבטיח איכות ושביעות רצון ללקוחותינו.</p>
         </section>
@@ -62,8 +67,6 @@
                 <iframe width="100%" height="400" src="https://www.youtube.com/embed/faGdF0CNxJA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </section>
-
-        
     </main>
 
     <footer>
@@ -91,6 +94,19 @@
         </div>
     </div>
 
+    <!-- Admin Modal -->
+    <!-- Admin Modal -->
+    <div id="adminModal" class="modal">
+        <div id="adminModalContent">
+            <span class="close" onclick="closeAdminModal()">&times;</span>
+            <form id="adminLoginForm">
+                <label for="adminKey">:סיסמא למנהל</label>
+                <input type="password" id="adminKey" required>
+                <button type="submit">הצג תורים</button>
+            </form>
+        </div>
+    </div>
+
     <script src="script.js"></script>
     <script>
         function openModal() {
@@ -101,23 +117,41 @@
             document.getElementById('appointmentModal').style.display = 'none';
         }
 
-        document.getElementById('date').addEventListener('change', async function() {
-            const date = this.value;
-            const response = await fetch('/api/available-slots');
-            const slots = await response.json();
+        function openAdminModal() {
+            document.getElementById('adminModal').style.display = 'block';
+        }
 
-            const timeSelect = document.getElementById('time');
-            timeSelect.innerHTML = ''; // Clear previous options
+        function closeAdminModal() {
+            document.getElementById('adminModal').style.display = 'none';
+        }
 
-            if (slots[date]) {
-                slots[date].forEach(slot => {
-                    const option = document.createElement('option');
-                    option.value = slot;
-                    option.textContent = slot;
-                    timeSelect.appendChild(option);
-                });
+        window.onclick = function(event) {
+            const appointmentModal = document.getElementById('appointmentModal');
+            const adminModal = document.getElementById('adminModal');
+            if (event.target == appointmentModal) {
+                appointmentModal.style.display = 'none';
             }
+            if (event.target == adminModal) {
+                adminModal.style.display = 'none';
+            }
+        }
+        document.getElementById('date').addEventListener('change', async function() {
+    const date = this.value;
+    if (date) {
+        const response = await fetch(`/api/available-slots?date=${date}`);
+        const availableSlots = await response.json();
+
+        const timeSelect = document.getElementById('time');
+        timeSelect.innerHTML = '';
+        availableSlots.forEach(slot => {
+            const option = document.createElement('option');
+            option.value = slot;
+            option.textContent = slot;
+            timeSelect.appendChild(option);
         });
+    }
+});
+
 
         document.getElementById('bookAppointmentForm').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -140,30 +174,52 @@
             if (response.ok) {
                 alert('תור נקבע בהצלחה!');
                 closeModal();
-                fetchAppointments(); // Refresh the appointment list
             } else {
                 const errorMessage = await response.text();
                 alert(errorMessage);
             }
         });
 
-        async function fetchAppointments() {
-            const response = await fetch('/api/appointments');
-            const appointments = await response.json();
+        document.getElementById('adminLoginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const adminKey = document.getElementById('adminKey').value;
 
-            const appointmentsList = document.getElementById('appointmentsList');
-            appointmentsList.innerHTML = '';
+            if (adminKey === '12345') { // יש להחליף בסיסמא הנכונה
+                const response = await fetch('/api/appointments');
+                const appointments = await response.json();
 
-            appointments.forEach(appointment => {
-                const listItem = document.createElement('li');
-                listItem.textContent = `תאריך: ${appointment.date}, שעה: ${appointment.time}, שם: ${appointment.name}, טלפון: ${appointment.phone}`;
-                appointmentsList.appendChild(listItem);
-            });
+                const appointmentsList = document.getElementById('appointmentsList');
+                appointmentsList.innerHTML = '';
+
+                appointments.forEach(appointment => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `תאריך: ${appointment.date}, שעה: ${appointment.time}, שם: ${appointment.name}, טלפון: ${appointment.phone}`;
+                    appointmentsList.appendChild(listItem);
+                });
+            } else {
+                alert('סיסמא שגויה');
+            }
+        });
+
+        
+        function openAdminModal() {
+            document.getElementById('adminModal').style.display = 'block';
         }
 
-        // Call this function to fetch appointments when the page loads
-        fetchAppointments();
+        function closeAdminModal() {
+            document.getElementById('adminModal').style.display = 'none';
+        }
+
+        document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const adminKey = document.getElementById('adminKey').value;
+
+            if (adminKey === '12345') { // סיסמת המנהל
+                window.location.href = 'appointment.html'; // העברת המנהל לדף הבא
+            } else {
+                alert('סיסמא שגויה');
+            }
+        });
     </script>
 </body>
 </html>
-

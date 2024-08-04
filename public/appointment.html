@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Appointments - Barber Shop Mohamed</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header id="aphead">
+        <h1 id="torem">ניהול תורים</h1>
+        <button id="torem1" onclick="logout()">התנתקות</button>
+    </header>
+
+    <main id="mainaa">
+        <table id="appointmentsTable">
+            <thead>
+                <tr>
+                    <th>תאריך</th>
+                    <th>שעה</th>
+                    <th>שם</th>
+                    <th>טלפון</th>
+                    <th>פעולה</th>
+                </tr>
+            </thead>
+            <tbody id="appointmentsList"></tbody>
+        </table>
+
+        <h2>הוסף תור</h2>
+        <form id="addAppointmentForm">
+            <label for="addDate">תאריך</label>
+            <input type="date" id="addDate" name="date" required>
+            <label for="addTime">שעה</label>
+            <input type="time" id="addTime" name="time" required>
+            <label for="addName">שם</label>
+            <input type="text" id="addName" name="name" required>
+            <label for="addPhone">טלפון</label>
+            <input type="tel" id="addPhone" name="phone" required>
+            <button type="submit">הוסף תור</button>
+        </form>
+    </main>
+
+    <script>
+        async function fetchAppointments() {
+            const response = await fetch('/api/appointments?adminKey=12345'); // Use the correct admin key
+            const appointments = await response.json();
+            const appointmentsList = document.getElementById('appointmentsList');
+            appointmentsList.innerHTML = '';
+
+            appointments.forEach(appointment => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${appointment.date}</td>
+                    <td>${appointment.time}</td>
+                    <td>${appointment.name}</td>
+                    <td>${appointment.phone}</td>
+                    <td>
+                        <button onclick="deleteAppointment('${appointment.date}', '${appointment.time}')">מחק</button>
+                    </td>
+                `;
+                appointmentsList.appendChild(row);
+            });
+        }
+
+        async function deleteAppointment(date, time) {
+    const response = await fetch(`/api/delete-appointment?date=${date}&time=${time}&adminKey=12345`, {
+        method: 'DELETE'
+    });
+    if (response.ok) {
+        fetchAppointments(); // עדכון רשימת התורים
+    } else {
+        const errorMessage = await response.text();
+        alert('שגיאה במחיקת תור: ' + errorMessage); // הצגת הודעת השגיאה
+    }
+}
+
+        document.getElementById('addAppointmentForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const data = {
+                date: formData.get('date'),
+                time: formData.get('time'),
+                name: formData.get('name'),
+                phone: formData.get('phone')
+            };
+
+            const response = await fetch('/api/add-appointment', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                alert('תור נוסף בהצלחה!');
+                fetchAppointments();
+                this.reset(); // Clear form
+            } else {
+                alert('שגיאה בהוספת תור');
+            }
+        });
+
+        fetchAppointments(); // Fetch appointments on load
+
+        function logout() {
+            // Implement logout functionality
+            window.location.href = 'index.html'; // Redirect to home
+        }
+    </script>
+</body>
+</html>

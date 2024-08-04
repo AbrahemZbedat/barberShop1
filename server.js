@@ -2,10 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
-const simpleGit = require('simple-git');
+const { exec } = require('child_process');
 
 const app = express();
-const git = simpleGit(); // יצירת מופע של simple-git
 const PORT = process.env.PORT || 3000;
 
 // Enable CORS
@@ -41,7 +40,7 @@ app.get('/api/available-slots', (req, res) => {
 });
 
 // Endpoint to book an appointment
-app.post('/api/book-appointment', async (req, res) => {
+app.post('/api/book-appointment', (req, res) => {
     const { date, time, name, phone } = req.body;
 
     if (!date || !time || !name || !phone) {
@@ -73,7 +72,7 @@ app.post('/api/book-appointment', async (req, res) => {
 
         appointments.push({ date, time, name, phone });
 
-        fs.writeFile(filePath, JSON.stringify(appointments, null, 2), async (writeErr) => {
+        fs.writeFile(filePath, JSON.stringify(appointments, null, 2), (writeErr) => {
             if (writeErr) {
                 console.error(`Error writing file ${filePath}:`, writeErr);
                 return res.status(500).send('Error booking appointment');
@@ -81,18 +80,17 @@ app.post('/api/book-appointment', async (req, res) => {
 
             console.log('Appointment booked successfully');
             availableSlots[date] = availableSlots[date].filter(slot => slot !== time);
-            
-            // עדכון Git
-            try {
-                await git.add(filePath);
-                await git.commit('Updated appointments JSON');
-                await git.push();
-                console.log('Changes pushed to Git successfully');
-            } catch (gitErr) {
-                console.error('Error pushing changes to Git:', gitErr);
-            }
 
-            res.send('Appointment booked successfully');
+            // עדכון Git
+            exec(`git add ${filePath} && git commit -m "Updated appointments JSON" && git push`, (error, stdout, stderr) => {
+                if (error) {
+                    console.error('Error pushing changes to Git:', error);
+                    return res.status(500).send('Error updating GitHub');
+                }
+                console.log(stdout);
+                console.error(stderr);
+                res.send('Appointment booked successfully');
+            });
         });
     });
 });

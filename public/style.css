@@ -9,7 +9,35 @@ header {
 }
 /****************************************************************************************/
 
+.header {
+    display: flex;
+    justify-content: flex-start;
+    padding: 10px;
+    background-color: #f1f1f1; /* צבע רקע לדוגמה */
+}
 
+button {
+    margin-right: 10px; /* רווח בין הכפתורים */
+    padding: 10px 15px; /* רווח פנימי */
+    border: none;
+    border-radius: 5px; /* פינות מעוגלות */
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#adminLogin {
+    background-color: #4CAF50; /* צבע רקע לכפתור כניסת מנהל */
+    color: white; /* צבע טקסט */
+}
+
+#logout {
+    background-color: #f44336; /* צבע רקע לכפתור יציאה */
+    color: white; /* צבע טקסט */
+}
+
+#adminLogin:hover, #logout:hover {
+    opacity: 0.8; /* שינוי שקיפות בעת ריחוף על הכפתור */
+}
 
 
 

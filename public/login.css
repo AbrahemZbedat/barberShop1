@@ -1,0 +1,116 @@
+/* login.css */
+
+/* בסיסי למרכז התוכן ולשיפור תצוגה */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+background-size:contain;
+    background-image: url("logo.png");
+    
+}
+
+
+/* Existing styles */
+.caixa {
+    max-width: 940px; /* Ensures responsiveness */
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Aligns items on the sides */
+    height: 10px;
+}
+footer {
+    text-align: center;
+    background: url("bg.jpg");
+    padding: 40px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.copyrigth {
+    color: #ffffff;
+    font-size: 18px;
+    margin: 0px 0 0;
+    text-align: center;
+    margin-left: 280px;
+
+}
+
+/* עיצוב כללית למיכל של טפסים */
+.login-container, .register-container {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    padding: 20px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+/* עיצוב לכותרת */
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* עיצוב לטפסים ולשדות הקלט */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type="text"], input[type="password"] {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* עיצוב לקישורים */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* עיצוב לכפתורי התחברות עם רשתות חברתיות */
+button#google-login, button#facebook-login {
+    background-color: #ddd;
+    color: #333;
+    border-radius: 4px;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+button#google-login:hover {
+    background-color: #ccc;
+}
+
+button#facebook-login:hover {
+    background-color: #ccc;
+}

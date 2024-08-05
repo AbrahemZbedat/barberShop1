@@ -1,225 +1,31 @@
 <!DOCTYPE html>
-<html lang="he">
+<html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Mohamed Kh home page</title>
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
-   
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
 </head>
 <body>
-    <header>
-        <div class="caixa">
-            <h1><img src="logo.png" alt="Logo"></h1>
-            <nav>
-                <ul>
-                    <li><a href="Contato.html">צור קשר</a></li>
-                    <li><a href="Produtos.html">המוצרים שלנו</a></li>
-                    <li><a href="index.html">דף בית</a></li>
-                </ul>
-            </nav>
-        </div>
-        <div class="admin-btn-container">
-            <button onclick="openAdminModal()">כניסת מנהל</button>
-        </div>
-        
-    </header>
-
-    <div class="banner-container">
-        <img class="banner" src="banner.jpg" alt="Banner">
-        <div class="button-container">
-            <button class="appointment-btn" onclick="openModal()">קביעת תור</button>
-            <button class="appointment-btn">צור קשר</button>
-            <button class="appointment-btn">המוצרים שלנו</button>
-        </div>
+  
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="login-form">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <button id="google-login">Login with Google</button>
+        <button id="facebook-login">Login with Facebook</button>
+        <p>Don't have an account? <a href="register.html">Register here</a></p>
     </div>
-    
-    <main>
-        <section class="principal">
-            <h2 class="titulo-principal">Barber Shop Mohamed</h2>
-            <img class="utensilios" src="utensilios.jpg" alt="Utensilios">
-            <p>ממוקם בלב העיר סכנין מביא לשוק את הטוב ביותר עבור השיער והאביזרים. נוסדה בשנת 2019, המספריה כבר מוכרת בעיר ומושכת לקוחות חדשים מדי יום. המשימה שלנו היא: "מתן הערכה עצמית ואיכות חיים ללקוחות". אנו מציעים אביזרים שונים המתאימים לשינויים בעולם האופנה. לשירות סטנדרט של מצוינות וזריזות המבטיח איכות ושביעות רצון ללקוחותינו.</p>
-        </section>
-
-        <section class="mapa">
-            <h3 class="titulo-principal">המקום שלנו</h3>
-            <p>המקום שלנו נמצא במרכז סכנין</p>
-            <div class="mapa-conteudo">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3391.057945197132!2d35.29962341551903!3d32.86214028094269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151c342c35441923%3A0x8cf469fc2f3a4e47!2z2KjZitmG2KfZhdi12KrZitin2LPZhyDZgdmK2K_ZitmG!5e0!3m2!1sen!2sil!4v1597433599799!5m2!1sen!2sil" width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-            </div>
-        </section>
-
-        <section class="beneficios">
-            <h3 class="titulo-principal">יתרונות</h3>
-            <div class="conteudo-beneficios">
-                <ul class="lista-beneficios">
-                    <li class="itens">שירות לקוחות מעולה</li>
-                    <li class="itens">מקום נגיש</li>
-                    <li class="itens">אנשי מקצוע מוסמכים</li>
-                    <li class="itens">דייקנות</li>
-                    <li class="itens">יחס אנושי מעולה</li>
-                </ul>
-                <img src="beneficios.jpg" class="imagem-beneficios" alt="Benefícios">
-            </div>
-
-            <div class="video">
-                <iframe width="100%" height="400" src="https://www.youtube.com/embed/faGdF0CNxJA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-        </section>
-    </main>
 
     <footer>
         <div class="caixa">
-            <p class="copyrigth">  &copy; כל הזכויות שמורות - אבראהים זבידאת</p>
+            <p class="copyrigth">  &copy; כל הזכויות שמורות - אבראהים זבידאת <br> <br>   abrahem.zbedat9@gmail.com - שירותי תוכנה  </p >  
+            
         </div>
     </footer>
-
-    <!-- Appointment Modal -->
-    <div id="appointmentModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>קביעת תור</h2>
-            <form id="bookAppointmentForm">
-                <label for="date">:תאריך</label>
-                <input type="date" id="date" name="date" required>
-                <label for="time">:שעה</label>
-                <select id="time" name="time" required></select>
-                <label for="name">:שם</label>
-                <input type="text" id="name" name="name" required>
-                <label for="phone">:מספר טלפון</label>
-                <input type="tel" id="phone" name="phone" required>
-                <button type="submit">קבע תור</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Admin Modal -->
-    <!-- Admin Modal -->
-    <div id="adminModal" class="modal">
-        <div id="adminModalContent">
-            <span class="close" onclick="closeAdminModal()">&times;</span>
-            <form id="adminLoginForm">
-                <label for="adminKey">:סיסמא למנהל</label>
-                <input type="password" id="adminKey" required>
-                <button type="submit">הצג תורים</button>
-            </form>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
-    <script>
-        function openModal() {
-            document.getElementById('appointmentModal').style.display = 'block';
-        }
-
-        function closeModal() {
-            document.getElementById('appointmentModal').style.display = 'none';
-        }
-
-        function openAdminModal() {
-            document.getElementById('adminModal').style.display = 'block';
-        }
-
-        function closeAdminModal() {
-            document.getElementById('adminModal').style.display = 'none';
-        }
-
-        window.onclick = function(event) {
-            const appointmentModal = document.getElementById('appointmentModal');
-            const adminModal = document.getElementById('adminModal');
-            if (event.target == appointmentModal) {
-                appointmentModal.style.display = 'none';
-            }
-            if (event.target == adminModal) {
-                adminModal.style.display = 'none';
-            }
-        }
-        document.getElementById('date').addEventListener('change', async function() {
-    const date = this.value;
-    if (date) {
-        const response = await fetch(`/api/available-slots?date=${date}`);
-        const availableSlots = await response.json();
-
-        const timeSelect = document.getElementById('time');
-        timeSelect.innerHTML = '';
-        availableSlots.forEach(slot => {
-            const option = document.createElement('option');
-            option.value = slot;
-            option.textContent = slot;
-            timeSelect.appendChild(option);
-        });
-    }
-});
-
-
-        document.getElementById('bookAppointmentForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const formData = new FormData(this);
-            const data = {
-                date: formData.get('date'),
-                time: formData.get('time'),
-                name: formData.get('name'),
-                phone: formData.get('phone')
-            };
-
-            const response = await fetch('/api/book-appointment', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            });
-
-            if (response.ok) {
-                alert('תור נקבע בהצלחה!');
-                closeModal();
-            } else {
-                const errorMessage = await response.text();
-                alert(errorMessage);
-            }
-        });
-
-        document.getElementById('adminLoginForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const adminKey = document.getElementById('adminKey').value;
-
-            if (adminKey === '12345') { // יש להחליף בסיסמא הנכונה
-                const response = await fetch('/api/appointments');
-                const appointments = await response.json();
-
-                const appointmentsList = document.getElementById('appointmentsList');
-                appointmentsList.innerHTML = '';
-
-                appointments.forEach(appointment => {
-                    const listItem = document.createElement('li');
-                    listItem.textContent = `תאריך: ${appointment.date}, שעה: ${appointment.time}, שם: ${appointment.name}, טלפון: ${appointment.phone}`;
-                    appointmentsList.appendChild(listItem);
-                });
-            } else {
-                alert('סיסמא שגויה');
-            }
-        });
-
-        
-        function openAdminModal() {
-            document.getElementById('adminModal').style.display = 'block';
-        }
-
-        function closeAdminModal() {
-            document.getElementById('adminModal').style.display = 'none';
-        }
-
-        document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const adminKey = document.getElementById('adminKey').value;
-
-            if (adminKey === '12345') { // סיסמת המנהל
-                window.location.href = 'appointment.html'; // העברת המנהל לדף הבא
-            } else {
-                alert('סיסמא שגויה');
-            }
-        });
-    </script>
+    <script src="login.js"></script>
 </body>
 </html>

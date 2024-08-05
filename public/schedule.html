@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <title>לוח זמן עבודה</title>
+
+    <link rel="stylesheet" href="schedule.css">
+</head>
+<body>
+    <h1>עדכון זמני תורים</h1>
+    <form id="updateSlotsForm">
+        <input type="date" id="date" required>
+        <input type="text" id="time" placeholder="זמני תור (למשל: 10:00, 11:00)" required>
+        <button type="submit">עדכן זמינות</button>
+    </form>
+    
+  
+    <script>
+        document.getElementById('updateSlotsForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // למנוע את שליחת הטופס הרגילה
+    
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value.split(',').map(t => t.trim()); // פיצול הזמנים למערך
+    
+            fetch('/api/update-slots', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ date, time }),
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('זמנים עודכנו בהצלחה');
+                    document.getElementById('updateSlotsForm').reset(); // לאפס את הטופס
+                } else {
+                    alert('שגיאה בעדכון זמני התורים');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('שגיאה בעדכון זמני התורים');
+            });
+        });
+    </script>
+    
+
+    <h1>מחק זמני תורים</h1>
+<form id="removeSlotsForm">
+    <input type="date" id="removeDate" required>
+    <input type="text" id="removeTime" placeholder="זמני תור (למשל: 10:00, 11:00)" required>
+    <button type="submit">מחק זמינות</button>
+</form>
+
+<script>
+    document.getElementById('removeSlotsForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // למנוע את שליחת הטופס הרגילה
+
+        const date = document.getElementById('removeDate').value;
+        const time = document.getElementById('removeTime').value.split(',').map(t => t.trim()); // פיצול הזמנים למערך
+
+        fetch('/api/remove-slots', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ date, time }),
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('זמנים נמחקו בהצלחה');
+                document.getElementById('removeSlotsForm').reset(); // לאפס את הטופס
+            } else {
+                alert('שגיאה במחקת זמני התורים');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('שגיאה במחקת זמני התורים');
+        });
+    });
+</script>
+
+</body>
+</html>

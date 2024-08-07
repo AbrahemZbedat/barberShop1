@@ -45,7 +45,7 @@ if (fs.existsSync('users.json')) {
 passport.use(new GoogleStrategy({
     clientID: '758925251707-ct6sagadmh2afegfdirfv77vcsggviku.apps.googleusercontent.com',
     clientSecret: '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',
-    callbackURL: 'http://localhost:3000/auth/google/callback'
+   callbackURL: 'https://barbershop1-5v0a.onrender.com/auth/google/callback'
 }, function(token, tokenSecret, profile, done) {
     let user = users[profile.id] || {};
     user.id = profile.id;

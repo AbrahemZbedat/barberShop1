@@ -114,3 +114,48 @@ button#google-login:hover {
 button#facebook-login:hover {
     background-color: #ccc;
 }
+
+
+/*************************/
+/* Mobile styles */
+@media (max-width: 600px) {
+    body {
+        flex-direction: column;
+        padding: 20px;
+        background-size: contain;
+    }
+
+    .caixa {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .login-container, .register-container {
+        max-width: 90%;
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    input[type="text"], input[type="password"] {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .copyrigth {
+        font-size: 12px;
+        margin-left: 0;
+    }
+
+    footer {
+        padding: 20px 0;
+    }
+}

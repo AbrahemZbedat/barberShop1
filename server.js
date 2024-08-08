@@ -189,12 +189,21 @@ app.post('/api/book-appointment', (req, res) => {
         });
     });
 });
+/************************************** */
+app.post('/api/verifyAdmin', (req, res) => {
+    const { adminKey } = req.body;
+    const ADMIN_KEY = '12345'; // מומלץ לשמור את הסיסמה בקובץ סביבה
+
+    if (adminKey === ADMIN_KEY) {
+        req.session.isAdmin = true;
+        res.sendStatus(200); // האימות הצליח
+    } else {
+        res.sendStatus(403); // סיסמה שגויה
+    }
+});
 
 app.get('/api/appointments', (req, res) => {
-    const adminKey = req.query.adminKey;
-    const ADMIN_KEY = '12345'; // Change this to a secure key
-
-    if (adminKey !== ADMIN_KEY) {
+    if (!req.session.isAdmin) {
         return res.status(403).send('Access denied');
     }
 
@@ -218,6 +227,23 @@ app.get('/api/appointments', (req, res) => {
     });
 });
 
+
+/******************************** */
+
+app.post('/api/adminLogin', (req, res) => {
+    const { password } = req.body;
+    const ADMIN_PASSWORD = '12345'; // עדיף לאחסן את הסיסמה בסביבה מאובטחת (env variable)
+
+    if (password === ADMIN_PASSWORD) {
+        // כאן ניתן להשתמש ב-session או token כדי לשמור את מצב החיבור של האדמין
+        req.session.isAdmin = true;
+        res.sendStatus(200); // האימות הצליח
+    } else {
+        res.sendStatus(403); // סיסמה שגויה
+    }
+});
+
+/***************************************** */
 app.post('/api/add-appointment', (req, res) => {
     const { date, time, name, phone } = req.body;
 
@@ -337,6 +363,8 @@ app.post('/api/remove-slots', (req, res) => {
 
     res.send('Slots removed successfully');
 });
+
+/******************************** */
 
 
 app.listen(PORT, () => {

@@ -192,25 +192,39 @@
         });
 
         document.getElementById('adminLoginForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const adminKey = document.getElementById('adminKey').value;
+    e.preventDefault();
+    const adminKey = document.getElementById('adminKey').value;
 
-            if (adminKey === '12345') { // יש להחליף בסיסמא הנכונה
-                const response = await fetch('/api/appointments');
-                const appointments = await response.json();
-
-                const appointmentsList = document.getElementById('appointmentsList');
-                appointmentsList.innerHTML = '';
-
-                appointments.forEach(appointment => {
-                    const listItem = document.createElement('li');
-                    listItem.textContent = `תאריך: ${appointment.date}, שעה: ${appointment.time}, שם: ${appointment.name}, טלפון: ${appointment.phone}`;
-                    appointmentsList.appendChild(listItem);
-                });
-            } else {
-                alert('סיסמא שגויה');
-            }
+    try {
+        const response = await fetch('/api/verifyAdmin', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ adminKey })
         });
+
+        if (response.ok) {
+            const appointmentsResponse = await fetch('/api/appointments');
+            const appointments = await appointmentsResponse.json();
+
+            const appointmentsList = document.getElementById('appointmentsList');
+            appointmentsList.innerHTML = '';
+
+            appointments.forEach(appointment => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `תאריך: ${appointment.date}, שעה: ${appointment.time}, שם: ${appointment.name}, טלפון: ${appointment.phone}`;
+                appointmentsList.appendChild(listItem);
+            });
+        } else {
+            alert('סיסמא שגויה');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('שגיאה באימות הסיסמה');
+    }
+});
+
 
         
         function openAdminModal() {
@@ -221,32 +235,34 @@
             document.getElementById('adminModal').style.display = 'none';
         }
 
-        document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const adminKey = document.getElementById('adminKey').value;
-
-            if (adminKey === '12345') { // סיסמת המנהל
-                window.location.href = 'appointment.html'; // העברת המנהל לדף הבא
-            } else {
-                alert('סיסמא שגויה');
-            }
-        });
         /*************************/
-
-        document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+        document.getElementById('adminLoginForm').addEventListener('submit', async function(e) {
     e.preventDefault(); // למנוע את רענון הדף
     const password = document.getElementById('adminPassword').value;
 
-    // בדוק אם הסיסמה נכונה
-    if (password === '12345') {
-        // הסתר את טופס הכניסה
-        document.getElementById('adminLoginForm').style.display = 'none';
-        // הצג את הכפתורים
-        document.getElementById('adminActions').style.display = 'block';
-    } else {
-        alert('סיסמה שגויה!');
+    try {
+        const response = await fetch('/api/adminLogin', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ password })
+        });
+
+        if (response.ok) {
+            // הסתר את טופס הכניסה
+            document.getElementById('adminLoginForm').style.display = 'none';
+            // הצג את הכפתורים
+            document.getElementById('adminActions').style.display = 'block';
+        } else {
+            alert('סיסמה שגויה!');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('שגיאה באימות הסיסמה');
     }
 });
+
 
 // הוספת אירועים לכפתורים
 document.getElementById('showAppointments').addEventListener('click', function() {

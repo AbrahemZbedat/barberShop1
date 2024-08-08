@@ -152,7 +152,7 @@ app.post('/api/book-appointment', (req, res) => {
     }
 
     if (!availableSlots[date] || !availableSlots[date].includes(time)) {
-        return res.status(400).send('Selected time slot is not available');
+        return res.status(400).send('תור תפוס ולא זמין Error');
     }
 
     const filePath = path.join(__dirname, 'public', 'appointments.json');
@@ -173,7 +173,7 @@ app.post('/api/book-appointment', (req, res) => {
 
         const isBooked = appointments.some(appointment => appointment.date === date && appointment.time === time);
         if (isBooked) {
-            return res.status(400).send('Time slot is already booked');
+            return res.status(400).send('תור תפוס ולא זמין Error');
         }
 
         appointments.push({ date, time, name, phone });
